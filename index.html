@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PI Planning Capacity Management</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="app-title">PI Planning Capacity Management</h1>
+            </div>
+            <div class="header-actions">
+                <!-- Segmented Menu Group -->
+                <div class="menu-group">
+                    <!-- Data Menu -->
+                    <div class="header-menu">
+                        <button class="btn-segment menu-trigger" onclick="toggleMenu('data-menu', event)">
+                            <span class="icon">💾</span> Data <span class="menu-arrow">▼</span>
+                        </button>
+                        <div class="menu-dropdown" id="data-menu">
+                            <button class="menu-item" onclick="importData(); closeAllMenus()">
+                                <span class="icon">📤</span> Import Plan
+                            </button>
+                            <button class="menu-item" onclick="exportData(); closeAllMenus()">
+                                <span class="icon">📥</span> Export Plan
+                            </button>
+                            <div class="menu-divider"></div>
+                            <button class="menu-item menu-item-danger" onclick="clearAllData(); closeAllMenus()">
+                                <span class="icon">🗑️</span> Clear All Data
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Settings Menu -->
+                    <div class="header-menu">
+                        <button class="btn-segment menu-trigger" onclick="toggleMenu('settings-menu', event)">
+                            <span class="icon">⚙️</span> Settings <span class="menu-arrow">▼</span>
+                        </button>
+                        <div class="menu-dropdown menu-dropdown-wide" id="settings-menu">
+                            <div class="theme-settings-container">
+                                <div class="theme-settings-section">
+                                    <div class="menu-section-title">Appearance Mode</div>
+                                    <div class="theme-option-group">
+                                        <button class="menu-item theme-option" data-theme-mode="light" onclick="toggleThemeMode('light')">
+                                            <span class="icon">☀️</span> Light
+                                        </button>
+                                        <button class="menu-item theme-option" data-theme-mode="dark" onclick="toggleThemeMode('dark')">
+                                            <span class="icon">🌙</span> Dark
+                                        </button>
+                                        <button class="menu-item theme-option" data-theme-mode="auto" onclick="toggleThemeMode('auto')">
+                                            <span class="icon">🔄</span> Auto
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="menu-divider"></div>
+                                <div class="theme-settings-section">
+                                    <div class="menu-section-title">Color Theme</div>
+                                    <div class="theme-option-group">
+                                        <button class="menu-item theme-option" data-theme-color="default" onclick="toggleThemeColor('default')">
+                                            <span class="icon">🔴</span> Default
+                                        </button>
+                                        <button class="menu-item theme-option" data-theme-color="ocean" onclick="toggleThemeColor('ocean')">
+                                            <span class="icon">🌊</span> Ocean Blue
+                                        </button>
+                                        <button class="menu-item theme-option" data-theme-color="lavender" onclick="toggleThemeColor('lavender')">
+                                            <span class="icon">💜</span> Lavender
+                                        </button>
+                                        <button class="menu-item theme-option" data-theme-color="mint" onclick="toggleThemeColor('mint')">
+                                            <span class="icon">🌿</span> Mint Green
+                                        </button>
+                                        <button class="menu-item theme-option" data-theme-color="peach" onclick="toggleThemeColor('peach')">
+                                            <span class="icon">🍑</span> Peach
+                                        </button>
+                                        <button class="menu-item theme-option" data-theme-color="sunset" onclick="toggleThemeColor('sunset')">
+                                            <span class="icon">🌅</span> Sunset
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Support Menu -->
+                    <div class="header-menu">
+                        <button class="btn-segment menu-trigger" onclick="toggleMenu('support-menu', event)">
+                            <span class="icon">💬</span> Support <span class="menu-arrow">▼</span>
+                        </button>
+                        <div class="menu-dropdown" id="support-menu">
+                            <button class="menu-item" onclick="window.open('documentation.html', '_blank'); closeAllMenus()">
+                                <span class="icon">📚</span> Documentation
+                        </button>
+                        <div class="menu-divider"></div>
+                        <button class="menu-item" onclick="window.open('https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?template=feature_request.md', '_blank'); closeAllMenus()">
+                            <span class="icon">💡</span> Feature Request
+                        </button>
+                        <button class="menu-item" onclick="window.open('https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?template=bug_report.md', '_blank'); closeAllMenus()">
+                            <span class="icon">🐛</span> Bug Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>
+
+    <!-- Tab Navigation -->
+    <nav class="tab-navigation">
+        <button class="tab-btn active" onclick="switchTab('roster')" data-tab="roster">
+            <span class="icon">👥</span> Employees & Teams
+        </button>
+        <button class="tab-btn" onclick="switchTab('holidays')" data-tab="holidays">
+            <span class="icon">🏖️</span> Holidays & Leave
+        </button>
+        <button class="tab-btn" onclick="switchTab('capacity')" data-tab="capacity">
+            <span class="icon">📊</span> PI Planning Capacity
+        </button>
+        <button class="tab-btn" onclick="switchTab('timeline')" data-tab="timeline">
+            <span class="icon">📅</span> PI Timeline
+        </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Tab 1: Employees & Teams -->
+        <div id="tab-roster" class="tab-content active">
+            <div class="roster-container">
+                <!-- Teams Section -->
+                <section class="roster-section">
+                    <div class="section-header">
+                        <h2>Teams</h2>
+                        <div class="section-header-actions">
+                            <button class="btn btn-primary btn-sm" onclick="openAddTeamModal()">
+                                <span class="icon">+</span> Add Team
+                            </button>
+                        </div>
+                    </div>
+                    <div id="teams-container" class="teams-grid">
+                        <!-- Dynamic content -->
+                    </div>
+                </section>
+
+                <!-- Employees Section -->
+                <section class="roster-section">
+                    <div class="section-header">
+                        <h2>Employees</h2>
+                        <div class="section-header-actions">
+                            <button class="btn btn-primary btn-sm" onclick="openAddEmployeeModal()">
+                                <span class="icon">+</span> Add Employee
+                            </button>
+                            <button id="bulk-delete-btn" class="btn btn-danger btn-sm" onclick="deleteSelectedEmployees()" style="display: none;">
+                                <span class="icon">🗑️</span> Delete Selected (<span id="selected-count">0</span>)
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table id="employees-table" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 40px;">
+                                        <input type="checkbox" id="select-all-employees" onchange="toggleAllEmployees(this.checked)">
+                                    </th>
+                                    <th>Name</th>
+                                    <th>Role</th>
+                                    <th>Hours/Day</th>
+                                    <th>SP Capacity/Iteration</th>
+                                    <th>Team</th>
+                                    <th>Off Days</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employees-tbody">
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Tab 2: PI Planning Capacity -->
+        <div id="tab-capacity" class="tab-content">
+            <div class="capacity-container">
+                <!-- PI Configuration -->
+                <section class="config-section">
+                    <h2>PI Configuration</h2>
+                    <div class="config-grid">
+                        <div class="form-group">
+                            <label for="pi-name">PI Name</label>
+                            <input type="text" id="pi-name" name="pi-name" placeholder="e.g., PI 2025-Q1" onchange="handlePIConfigChange()">
+                        </div>
+                        <div class="form-group">
+                            <label for="pi-start-date">Start Date</label>
+                            <input type="date" id="pi-start-date" name="pi-start-date" onchange="handlePIStartDateChange()">
+                        </div>
+                        <div class="form-group">
+                            <label for="iteration-duration">Iteration Duration (weeks)</label>
+                            <input type="number" id="iteration-duration" name="iteration-duration" value="2" min="1" max="4" onchange="handlePIConfigChange()">
+                        </div>
+                        <div class="form-group">
+                            <label for="iteration-count"># of Iterations</label>
+                            <input type="number" id="iteration-count" name="iteration-count" value="6" min="1" max="20" onchange="handleIterationCountChange()">
+                        </div>
+                        <div class="form-group">
+                            <label for="pi-end-date">End Date <span style="color: var(--thy-gray); font-size: 11px;">(auto)</span></label>
+                            <input type="date" id="pi-end-date" name="pi-end-date" onchange="handlePIEndDateChange()">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Capacity Summary -->
+                <section class="summary-section">
+                    <h2>Capacity Summary</h2>
+                    <div id="capacity-summary" class="summary-grid">
+                        <!-- Dynamic content -->
+                    </div>
+                </section>
+
+                <!-- Team Capacity Details -->
+                <section class="team-capacity-section">
+                    <h2>Team Capacity Details</h2>
+                    <div id="team-capacity-details" class="capacity-details-grid">
+                        <!-- Dynamic content -->
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Tab 3: Holidays & Leave Management -->
+        <div id="tab-holidays" class="tab-content">
+            <div class="holidays-container">
+                <section class="holidays-section">
+                    <div class="section-header">
+                        <h2>Holidays & Leave Management</h2>
+                        <button class="btn btn-primary btn-sm" onclick="openAddHolidayModal()">
+                            <span class="icon">+</span> Add Holiday/Leave
+                        </button>
+                    </div>
+                    <div id="holidays-list" class="holidays-list">
+                        <!-- Dynamic content -->
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Tab 4: PI Timeline -->
+        <div id="tab-timeline" class="tab-content">
+            <div class="timeline-container">
+                <section class="gantt-section">
+                    <div class="section-header">
+                        <h2>PI Timeline</h2>
+                        <div class="team-filter-container">
+                            <label for="team-filter-select">Filter by Team:</label>
+                            <div class="team-filter-select-wrapper">
+                                <select id="team-filter-select" multiple size="1">
+                                    <!-- Dynamic content -->
+                                </select>
+                                <div id="team-filter-display" class="team-filter-display" onclick="toggleTeamFilterDropdown()">
+                                    <span id="team-filter-text">All Teams</span>
+                                    <span class="dropdown-arrow">▼</span>
+                                </div>
+                                <div id="team-filter-dropdown" class="team-filter-dropdown">
+                                    <div class="team-filter-option" onclick="selectAllTeams(event)">
+                                        <input type="checkbox" id="select-all-teams">
+                                        <label for="select-all-teams">Select All</label>
+                                    </div>
+                                    <div class="team-filter-divider"></div>
+                                    <div id="team-filter-options">
+                                        <!-- Dynamic content -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="gantt-chart" class="gantt-chart">
+                        <!-- Dynamic content -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal: Add/Edit Employee -->
+    <div id="employee-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="employee-modal-title">Add Employee</h2>
+                <button class="modal-close" onclick="closeEmployeeModal()">&times;</button>
+            </div>
+            <form id="employee-form" onsubmit="saveEmployee(event)">
+                <input type="hidden" id="employee-id" name="employee-id">
+                <div class="form-group">
+                    <label for="employee-name">Full Name *</label>
+                    <input type="text" id="employee-name" name="employee-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="employee-role">Role *</label>
+                    <select id="employee-role" name="employee-role" required>
+                        <option value="">Select Role</option>
+                        <option value="Product Owner">Product Owner</option>
+                        <option value="Product Analyst">Product Analyst</option>
+                        <option value="Product Manager">Product Manager</option>
+                        <option value="Backend Developer">Backend Developer</option>
+                        <option value="Frontend Developer">Frontend Developer</option>
+                        <option value="QA Engineer">QA Engineer</option>
+                        <option value="Product Designer">Product Designer</option>
+                        <option value="Agile Master">Agile Master</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="employee-hours">Available Hours per Day *</label>
+                    <input type="number" id="employee-hours" name="employee-hours" step="0.5" min="0" max="8" value="8" required>
+                </div>
+                <div class="form-group">
+                    <label for="employee-sp-capacity">Story Points Capacity per Iteration *</label>
+                    <input type="number" id="employee-sp-capacity" name="employee-sp-capacity" min="0" value="20" required>
+                </div>
+                <div class="form-group">
+                    <label for="employee-team-select">Add to Team (Optional)</label>
+                    <div class="add-member-row">
+                        <select id="employee-team-select" name="employee-team-select" class="member-select">
+                            <option value="">Select team...</option>
+                        </select>
+                        <button type="button" class="btn btn-primary btn-sm" onclick="addEmployeeToTeam()">Add</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="employee-teams-list">Current Teams</label>
+                    <div id="employee-teams-list" class="selected-members-list">
+                        <!-- Dynamic content -->
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeEmployeeModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Add/Edit Team -->
+    <div id="team-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="team-modal-title">Add Team</h2>
+                <button class="modal-close" onclick="closeTeamModal()">&times;</button>
+            </div>
+            <form id="team-form" onsubmit="saveTeam(event)">
+                <input type="hidden" id="team-id">
+                <div class="form-group">
+                    <label for="team-name">Team Name *</label>
+                    <input type="text" id="team-name" name="team-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="team-description">Description</label>
+                    <textarea id="team-description" name="team-description" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="add-team-member-select">Add Team Members</label>
+                    <div class="add-member-row">
+                        <select id="add-team-member-select" name="add-team-member-select" class="member-select">
+                            <option value="">Select employee to add...</option>
+                        </select>
+                        <button type="button" class="btn btn-primary btn-sm" onclick="addTeamMemberFromSelect()">Add</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="selected-members-list">Selected Members</label>
+                    <div id="selected-members-list" class="selected-members-list">
+                        <!-- Dynamic content -->
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeTeamModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Team Details -->
+    <div id="team-details-modal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>Team Details</h2>
+                <button class="modal-close" onclick="closeTeamDetailsModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="team-details-content">
+                    <!-- Dynamic content -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Iteration Details -->
+    <div id="iteration-details-modal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2 id="iteration-details-title">Iteration Details</h2>
+                <button class="modal-close" onclick="closeIterationDetailsModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="iteration-details-content">
+                    <!-- Dynamic content -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Add Holiday/Leave -->
+    <div id="holiday-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Holiday / Leave</h2>
+                <button class="modal-close" onclick="closeHolidayModal()">&times;</button>
+            </div>
+            <div class="holiday-info-box">
+                <strong>ℹ️ Important:</strong> If you select the same date for both start and end, it will be counted as a single day off.
+            </div>
+            <form id="holiday-form" onsubmit="saveHoliday(event)">
+                <input type="hidden" id="holiday-id" name="holiday-id">
+                <div class="form-group">
+                    <label for="holiday-type">Type *</label>
+                    <select id="holiday-type" name="holiday-type" onchange="toggleHolidayFields()" required>
+                        <option value="public">Public Holiday (All Employees)</option>
+                        <option value="team">Team Holiday (Multiple Teams)</option>
+                        <option value="personal">Personal Leave (Single Employee)</option>
+                    </select>
+                </div>
+                <div class="form-group" id="holiday-teams-group" style="display: none;">
+                    <label for="holiday-teams-checkboxes">Select Teams *</label>
+                    <div id="holiday-teams-checkboxes" class="checkbox-group">
+                        <!-- Dynamic content -->
+                    </div>
+                </div>
+                <div class="form-group" id="holiday-employee-group" style="display: none;">
+                    <label for="holiday-employee">Employee *</label>
+                    <select id="holiday-employee" name="holiday-employee">
+                        <option value="">Select Employee</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="holiday-name">Name/Description *</label>
+                    <input type="text" id="holiday-name" name="holiday-name" placeholder="e.g., New Year's Day" required>
+                </div>
+                <div class="form-group">
+                    <label for="holiday-start-date">Start Date *</label>
+                    <input type="date" id="holiday-start-date" name="holiday-start-date" onchange="handleHolidayStartDateChange()" required>
+                </div>
+                <div class="form-group">
+                    <label for="holiday-end-date">End Date *</label>
+                    <input type="date" id="holiday-end-date" name="holiday-end-date" onchange="updateHolidayDays()" required>
+                </div>
+                <div class="form-group">
+                    <label for="holiday-exclude-weekends">
+                        <input type="checkbox" id="holiday-exclude-weekends" name="holiday-exclude-weekends" onchange="updateHolidayDays()" checked>
+                        Exclude Weekends (Only count working days)
+                    </label>
+                </div>
+                <div id="holiday-days-breakdown" class="holiday-days-breakdown" style="display: none;">
+                    <label for="holiday-days-list">Day Details (Full Day / Half Day)</label>
+                    <div id="holiday-days-list" class="holiday-days-list">
+                        <!-- Dynamic content -->
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeHolidayModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts/script.js"></script>
+</body>
+</html>

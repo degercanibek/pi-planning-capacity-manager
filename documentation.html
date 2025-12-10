@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - PI Planning Capacity Management</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <style>
+        /* Documentation-specific overrides */
+        .doc-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 32px;
+        }
+    </style>
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="app-title">📚 Documentation</h1>
+                <p class="header-subtitle">PI Planning Capacity Management</p>
+            </div>
+            <div class="header-actions">
+                <a href="index.html" class="btn btn-secondary btn-compact">← Back to App</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="doc-container">
+        <!-- Table of Contents (Fixed Sidebar) -->
+        <aside class="doc-toc">
+            <div class="toc-header">Contents</div>
+            <nav class="toc-nav">
+                <a href="#overview" class="toc-link">Overview</a>
+                <a href="#features" class="toc-link">Features</a>
+                <a href="#features-employee" class="toc-link sub">Employee & Team Management</a>
+                <a href="#features-capacity" class="toc-link sub">PI Planning Capacity</a>
+                <a href="#features-timeline" class="toc-link sub">Timeline & Calendar</a>
+                <a href="#features-design" class="toc-link sub">Design</a>
+                <a href="#features-data" class="toc-link sub">Data Management</a>
+                <a href="#file-structure" class="toc-link">File Structure</a>
+                <a href="#getting-started" class="toc-link">Getting Started</a>
+                <a href="#getting-started-open" class="toc-link sub">Open the Application</a>
+                <a href="#getting-started-import" class="toc-link sub">Import Sample Data</a>
+                <a href="#getting-started-configure" class="toc-link sub">Configure Your PI</a>
+                <a href="#getting-started-holidays" class="toc-link sub">Manage Holidays</a>
+                <a href="#usage-guide" class="toc-link">Usage Guide</a>
+                <a href="#usage-employees" class="toc-link sub">Adding Employees</a>
+                <a href="#usage-teams" class="toc-link sub">Creating Teams</a>
+                <a href="#usage-capacity" class="toc-link sub">Viewing Capacity</a>
+                <a href="#usage-timeline" class="toc-link sub">Managing the Timeline</a>
+                <a href="#data-management" class="toc-link">Data Management</a>
+                <a href="#technical-details" class="toc-link">Technical Details</a>
+                <a href="#customization" class="toc-link">Customization</a>
+                <a href="#tips" class="toc-link">Tips</a>
+                <a href="#troubleshooting" class="toc-link">Troubleshooting</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="doc-content">
+            <section id="overview" class="doc-section">
+                <h1>PI Planning Capacity Management</h1>
+                <p class="lead">A professional capacity planning tool designed specifically for PI (Program Increment) Planning. This tool helps teams manage capacity, track availability, and plan resources effectively across multiple teams.</p>
+            </section>
+
+            <section id="features" class="doc-section">
+                <h2>Features</h2>
+                
+                <div id="features-employee" class="feature-block">
+                    <h3>👥 Employee & Team Management (Roster Tab)</h3>
+                    <ul>
+                        <li><strong>Employee Management</strong>: Add and manage individual employees with detailed information
+                            <ul>
+                                <li>Full name, role, available hours per day</li>
+                                <li>Story points capacity per sprint</li>
+                                <li>Team assignment</li>
+                            </ul>
+                        </li>
+                        <li><strong>Team Management</strong>: Create and organize teams
+                            <ul>
+                                <li>Team name and description</li>
+                                <li>Assign multiple employees to teams</li>
+                                <li>Real-time capacity calculations per team</li>
+                            </ul>
+                        </li>
+                        <li><strong>Dynamic Updates</strong>: Employee changes automatically reflect in their assigned teams</li>
+                    </ul>
+                </div>
+
+                <div id="features-capacity" class="feature-block">
+                    <h3>📊 PI Planning Capacity (Capacity Tab)</h3>
+                    <ul>
+                        <li><strong>PI Configuration</strong>: Set up Program Increment parameters
+                            <ul>
+                                <li>PI name, start date, end date</li>
+                                <li>Sprint duration (days)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Capacity Summary</strong>: View comprehensive capacity metrics
+                            <ul>
+                                <li>Total duration and working days</li>
+                                <li>Number of sprints</li>
+                                <li>Total teams and employees</li>
+                                <li>Total person-hours and story points</li>
+                            </ul>
+                        </li>
+                        <li><strong>Team Capacity Details</strong>: Detailed breakdown per team
+                            <ul>
+                                <li>Members count</li>
+                                <li>Hours per day and total hours</li>
+                                <li>Story points per sprint and total SP</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="features-timeline" class="feature-block">
+                    <h3>📅 Timeline & Calendar (Timeline Tab)</h3>
+                    <ul>
+                        <li><strong>Holiday Management</strong>: Comprehensive holiday and leave tracking
+                            <ul>
+                                <li>Public holidays (affects all employees)</li>
+                                <li>Team holidays (affects specific teams)</li>
+                                <li>Personal leave (affects individual employees)</li>
+                                <li>Exclude weekends option</li>
+                            </ul>
+                        </li>
+                        <li><strong>Sprint Timeline</strong>: Visual sprint-based representation
+                            <ul>
+                                <li>Working days per sprint</li>
+                                <li>Off days tracking</li>
+                                <li>Team filtering with multi-select dropdown</li>
+                                <li>Sprint detail view with member capacity breakdown</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="features-design" class="feature-block">
+                    <h3>🎨 Design</h3>
+                    <ul>
+                        <li><strong>Corporate Colors</strong>: Red (#e30a17), black, gray tones, and white</li>
+                        <li><strong>Clean Interface</strong>: Minimalist, professional design</li>
+                        <li><strong>Responsive Layout</strong>: Works on desktop and mobile devices</li>
+                        <li><strong>English Only</strong>: Single language interface</li>
+                    </ul>
+                </div>
+
+                <div id="features-data" class="feature-block">
+                    <h3>💾 Data Management</h3>
+                    <ul>
+                        <li><strong>Separate JSON Files</strong>: Employees and teams stored independently</li>
+                        <li><strong>Import/Export</strong>: Load and save data easily</li>
+                        <li><strong>Local Storage</strong>: Data persists in browser</li>
+                        <li><strong>Real-time Sync</strong>: Changes reflect across all views</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="file-structure" class="doc-section">
+                <h2>File Structure</h2>
+                <div class="code-block">
+                    <pre><code>Capacity Management/
+├── index.html              # Main application file
+├── documentation.html      # This documentation page
+├── data/
+│   ├── employees.json      # Sample employee data
+│   └── teams.json          # Sample team data
+├── styles/
+│   ├── styles.css          # Main application styles
+│   └── documentation.css   # Documentation styles
+└── scripts/
+    └── script.js           # Application logic</code></pre>
+                </div>
+            </section>
+
+            <section id="getting-started" class="doc-section">
+                <h2>Getting Started</h2>
+                
+                <div id="getting-started-open" class="step-block">
+                    <h3>1. Open the Application</h3>
+                    <p>Simply open <code>index.html</code> in a modern web browser (Chrome, Firefox, Safari, or Edge).</p>
+                </div>
+
+                <div id="getting-started-import" class="step-block">
+                    <h3>2. Import Sample Data (First Time)</h3>
+                    <ol>
+                        <li>Click <strong>"Import Employees"</strong> button</li>
+                        <li>Select <code>data/employees.json</code> file</li>
+                        <li>Click <strong>"Import Teams"</strong> button</li>
+                        <li>Select <code>data/teams.json</code> file</li>
+                    </ol>
+                </div>
+
+                <div id="getting-started-configure" class="step-block">
+                    <h3>3. Configure Your PI</h3>
+                    <ol>
+                        <li>Go to <strong>"PI Planning Capacity"</strong> tab</li>
+                        <li>Fill in:
+                            <ul>
+                                <li>PI Name (e.g., "PI 2025-Q1")</li>
+                                <li>Start Date</li>
+                                <li>End Date</li>
+                                <li>Sprint Duration (default: 14 days / 2 weeks)</li>
+                            </ul>
+                        </li>
+                        <li>Click <strong>"Calculate Capacity"</strong></li>
+                    </ol>
+                </div>
+
+                <div id="getting-started-holidays" class="step-block">
+                    <h3>4. Manage Holidays</h3>
+                    <ol>
+                        <li>Go to <strong>"Timeline & Calendar"</strong> tab</li>
+                        <li>Click <strong>"+ Add Holiday/Leave"</strong></li>
+                        <li>Select type:
+                            <ul>
+                                <li><strong>Public Holiday</strong>: National/company holidays (affects all)</li>
+                                <li><strong>Team Holiday</strong>: Team-specific holidays</li>
+                                <li><strong>Personal Leave</strong>: Individual employee leave</li>
+                            </ul>
+                        </li>
+                        <li>Fill in dates and details</li>
+                        <li>Click <strong>"Save"</strong></li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="usage-guide" class="doc-section">
+                <h2>Usage Guide</h2>
+                
+                <div id="usage-employees" class="usage-block">
+                    <h3>Adding Employees</h3>
+                    <ol>
+                        <li>Go to <strong>"Employees & Teams"</strong> tab</li>
+                        <li>Click <strong>"+ Add Employee"</strong></li>
+                        <li>Fill in:
+                            <ul>
+                                <li>Full Name</li>
+                                <li>Role (select from dropdown)</li>
+                                <li>Hours per day (e.g., 8)</li>
+                                <li>SP Capacity per sprint (e.g., 25)</li>
+                                <li>Team (optional)</li>
+                            </ul>
+                        </li>
+                        <li>Click <strong>"Save"</strong></li>
+                    </ol>
+                    <div class="note-box">
+                        <strong>📌 Note:</strong> Only Product Owners and Product Designers can be assigned to multiple teams.
+                    </div>
+                </div>
+
+                <div id="usage-teams" class="usage-block">
+                    <h3>Creating Teams</h3>
+                    <ol>
+                        <li>Go to <strong>"Employees & Teams"</strong> tab</li>
+                        <li>Click <strong>"+ Add Team"</strong></li>
+                        <li>Enter team name and description</li>
+                        <li>Select team members from the dropdown</li>
+                        <li>Click <strong>"Save"</strong></li>
+                    </ol>
+                    <div class="note-box">
+                        <strong>📌 Note:</strong> Employees are automatically assigned to teams when selected. If an employee (other than PO or Designer) is assigned to a new team, they are removed from the previous team.
+                    </div>
+                </div>
+
+                <div id="usage-capacity" class="usage-block">
+                    <h3>Viewing Capacity</h3>
+                    <ol>
+                        <li>Configure your PI in the <strong>"PI Planning Capacity"</strong> tab</li>
+                        <li>View the summary cards showing:
+                            <ul>
+                                <li>Total duration and working days</li>
+                                <li>Number of sprints</li>
+                                <li>Total teams and employees</li>
+                                <li>Total hours and story points</li>
+                            </ul>
+                        </li>
+                        <li>Scroll down to see detailed capacity breakdown per team including off days</li>
+                    </ol>
+                </div>
+
+                <div id="usage-timeline" class="usage-block">
+                    <h3>Managing the Timeline</h3>
+                    <ol>
+                        <li>Go to <strong>"Timeline & Calendar"</strong> tab</li>
+                        <li>Use the team filter dropdown to select which teams to view</li>
+                        <li>Add holidays/leaves as needed</li>
+                        <li>Click on any sprint card to view detailed capacity breakdown:
+                            <ul>
+                                <li>Individual member working days and hours</li>
+                                <li>Personal off days with dates and reasons</li>
+                                <li>Story point capacity per member</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="data-management" class="doc-section">
+                <h2>Data Management</h2>
+                
+                <h3>Exporting Data</h3>
+                <ul>
+                    <li><strong>Export Employees</strong>: Saves all employee data to <code>employees.json</code></li>
+                    <li><strong>Export Teams</strong>: Saves all team data to <code>teams.json</code></li>
+                </ul>
+                <p>Store these files safely to backup your data or share with team members.</p>
+
+                <h3>Importing Data</h3>
+                <ul>
+                    <li><strong>Import Employees</strong>: Load employee data from JSON file</li>
+                    <li><strong>Import Teams</strong>: Load team data from JSON file</li>
+                </ul>
+                <p>Imported data merges with existing data (updates matching IDs, adds new entries).</p>
+
+                <h3>Data Structure</h3>
+                
+                <h4>Employee JSON Format</h4>
+                <div class="code-block">
+                    <pre><code>{
+  "id": "emp_001",
+  "name": "John Doe",
+  "role": "Backend Developer",
+  "hoursPerDay": 8,
+  "spCapacity": 25,
+  "teamId": "team_001"
+}</code></pre>
+                </div>
+
+                <h4>Team JSON Format</h4>
+                <div class="code-block">
+                    <pre><code>{
+  "id": "team_001",
+  "name": "Development Team",
+  "description": "Main development team",
+  "members": ["emp_001", "emp_002", "emp_003"]
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="technical-details" class="doc-section">
+                <h2>Technical Details</h2>
+                
+                <h3>Browser Compatibility</h3>
+                <ul>
+                    <li>Chrome 90+</li>
+                    <li>Firefox 88+</li>
+                    <li>Safari 14+</li>
+                    <li>Edge 90+</li>
+                </ul>
+
+                <h3>Data Storage</h3>
+                <ul>
+                    <li>Uses browser's <code>localStorage</code> API</li>
+                    <li>Data persists between sessions</li>
+                    <li>Each browser/device has independent storage</li>
+                </ul>
+
+                <h3>Capacity Calculations</h3>
+                <ul>
+                    <li><strong>Working Days</strong>: Total days minus weekends, public holidays, team holidays, and personal leaves</li>
+                    <li><strong>Total Hours</strong>: Sum of all employee hours × working days</li>
+                    <li><strong>Total Story Points</strong>: Sum of all employee SP capacity × number of sprints</li>
+                    <li><strong>Team Capacity</strong>: Aggregated from assigned team members, accounting for individual absences</li>
+                </ul>
+            </section>
+
+            <section id="customization" class="doc-section">
+                <h2>Customization</h2>
+                
+                <h3>Adding New Roles</h3>
+                <p>Edit the role dropdown in <code>index.html</code>:</p>
+                <div class="code-block">
+                    <pre><code>&lt;option value="Your Role"&gt;Your Role&lt;/option&gt;</code></pre>
+                </div>
+
+                <h3>Modifying Sprint Duration</h3>
+                <p>Default is 2 weeks (14 days). Can be changed in PI Configuration (1-4 weeks supported).</p>
+
+                <h3>Theme Colors</h3>
+                <p>All colors are defined in <code>styles/styles.css</code> under <code>:root</code> variables:</p>
+                <div class="code-block">
+                    <pre><code>:root {
+  --thy-red: #e30a17;
+  --thy-black: #1a1a1a;
+  --thy-gray: #5a5a5a;
+  /* etc. */
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="tips" class="doc-section">
+                <h2>Tips</h2>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-number">1</div>
+                        <div class="tip-content">
+                            <strong>Import Order</strong>
+                            <p>Import employees first, then teams (teams reference employee IDs)</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">2</div>
+                        <div class="tip-content">
+                            <strong>Regular Backups</strong>
+                            <p>Export regularly to backup your data</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">3</div>
+                        <div class="tip-content">
+                            <strong>Holiday Planning</strong>
+                            <p>Add public holidays early for accurate capacity calculations</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">4</div>
+                        <div class="tip-content">
+                            <strong>Review Assignments</strong>
+                            <p>Review team assignments after importing data</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">5</div>
+                        <div class="tip-content">
+                            <strong>Recalculate</strong>
+                            <p>Calculate capacity after any changes to see updated metrics</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-number">6</div>
+                        <div class="tip-content">
+                            <strong>Sprint Details</strong>
+                            <p>Click on sprint cards to see detailed member capacity and off days</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="troubleshooting" class="doc-section">
+                <h2>Troubleshooting</h2>
+                
+                <div class="troubleshooting-item">
+                    <h3>Data Not Persisting</h3>
+                    <ul>
+                        <li>Check if browser allows localStorage</li>
+                        <li>Try a different browser</li>
+                        <li>Clear browser cache and re-import data</li>
+                    </ul>
+                </div>
+
+                <div class="troubleshooting-item">
+                    <h3>Wrong Capacity Calculations</h3>
+                    <ul>
+                        <li>Verify PI dates are correct</li>
+                        <li>Check if holidays are properly configured</li>
+                        <li>Ensure all employees have valid hours and SP capacity</li>
+                        <li>Confirm personal leaves are properly assigned to employees</li>
+                    </ul>
+                </div>
+
+                <div class="troubleshooting-item">
+                    <h3>Import Errors</h3>
+                    <ul>
+                        <li>Verify JSON file format</li>
+                        <li>Check for missing required fields</li>
+                        <li>Ensure IDs are unique</li>
+                    </ul>
+                </div>
+
+                <div class="troubleshooting-item">
+                    <h3>Team Filter Issues</h3>
+                    <ul>
+                        <li>At least one team must always be selected</li>
+                        <li>Refresh the page if filters don't update</li>
+                        <li>Check if teams have members assigned</li>
+                    </ul>
+                </div>
+            </section>
+
+            <footer class="doc-footer">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <strong>Version:</strong> 1.0
+                    </div>
+                    <div class="footer-section">
+                        <strong>Last Updated:</strong> December 2025
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script src="scripts/documentation.js"></script>
+</body>
+</html>
