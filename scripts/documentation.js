@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Theme Management - sync with main app
 function initTheme() {
-    const savedMode = localStorage.getItem('themeMode') || 'auto';
+    const savedMode = localStorage.getItem('themeMode') || 'light';
     const savedColor = localStorage.getItem('themeColor') || 'default';
     applyTheme(savedMode, savedColor);
 }

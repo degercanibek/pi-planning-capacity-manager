@@ -2892,7 +2892,7 @@ document.addEventListener('click', (e) => {
 
 // Theme System
 function initTheme() {
-    const savedMode = localStorage.getItem('themeMode') || 'auto';
+    const savedMode = localStorage.getItem('themeMode') || 'light';
     const savedColor = localStorage.getItem('themeColor') || 'default';
     applyTheme(savedMode, savedColor);
     updateThemeUI(savedMode, savedColor);
@@ -2906,7 +2906,7 @@ function toggleThemeMode(mode) {
 }
 
 function toggleThemeColor(color) {
-    const savedMode = localStorage.getItem('themeMode') || 'auto';
+    const savedMode = localStorage.getItem('themeMode') || 'light';
     localStorage.setItem('themeColor', color);
     applyTheme(savedMode, color);
     updateThemeUI(savedMode, color);
